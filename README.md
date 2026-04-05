@@ -1,66 +1,64 @@
 # AgentOps Learn
 
-A hands-on learning project for comparing LLM observability / AgentOps tools.  
-Each tool’s core features are covered step by step in Jupyter notebooks.
-
-> For a broad market analysis, see [MARKET_REVIEW.md](./MARKET_REVIEW.md).
+Hands-on tutorials for LLM observability and AgentOps tools.  
+Each directory is a self-contained module with its own notebooks, dependencies, and setup instructions.
 
 ---
 
-## Tutorials by tool
+## Project structure
 
-| Directory | Tool | Position | Status |
-|-----------|------|----------|--------|
-| [`langfuse/`](./langfuse/) | Langfuse | Leading open source, OTel-based, framework-agnostic | **Done** |
-| [`agentops-ai/`](./agentops-ai/) | AgentOps.ai | Multi-agent focus, time-travel debugging | Planned |
-| [`braintrust/`](./braintrust/) | Braintrust | Production eval + CI/CD deploy gates | Planned |
-| [`helicone/`](./helicone/) | Helicone | Proxy-based, fastest integration | Planned |
-| [`arize-phoenix/`](./arize-phoenix/) | Arize Phoenix | Fully open source, ML + LLM monitoring | Planned |
+```
+agentops-learn/
+├── docs/
+│   └── market-review.md            # Market analysis — 9 vendors compared
+│
+├── langfuse/                       # ✅ Done
+│   ├── 01_basic_tracing.ipynb
+│   ├── 02_decorator_and_nesting.ipynb
+│   ├── 03_prompt_management.ipynb
+│   ├── 04_scoring_and_evaluation.ipynb
+│   └── 05_datasets_and_experiments.ipynb
+│
+├── agentops-ai/                    # 📋 Planned
+├── braintrust/                     # 📋 Planned
+├── helicone/                       # 📋 Planned
+├── arize-phoenix/                  # 📋 Planned
+│
+├── .env.example                    # All API keys in one place
+└── .gitignore
+```
 
-### Selection criteria
+## Tutorials
 
-From the nine tools in MARKET_REVIEW.md, **five were chosen** for high hands-on value and clear positioning:
+| Directory | Tool | What it covers | Status |
+|-----------|------|----------------|--------|
+| [`langfuse/`](./langfuse/) | Langfuse | Tracing, `@observe()`, prompt management, scoring, dataset experiments | **Done** |
+| [`agentops-ai/`](./agentops-ai/) | AgentOps.ai | Multi-agent tracing, time-travel debugging | Planned |
+| [`braintrust/`](./braintrust/) | Braintrust | Production evals, CI/CD deploy gates | Planned |
+| [`helicone/`](./helicone/) | Helicone | Proxy-based integration, cost tracking | Planned |
+| [`arize-phoenix/`](./arize-phoenix/) | Arize Phoenix | OTel-native tracing, embedding visualization | Planned |
 
-- LangSmith: tied to LangChain — excluded
-- W&B Weave: tied to W&B — excluded
-- Datadog: enterprise / paid focus — excluded
-- Traceloop: instrumentation layer (not a backend) — excluded
+> **Why these five?** Selected from [9 vendors reviewed](./docs/market-review.md) for high hands-on value and distinct positioning. Excluded: LangSmith (LangChain-tied), W&B Weave (W&B-tied), Datadog (enterprise), Traceloop (instrumentation layer only).
 
----
-
-## Shared environment setup
+## Quick start
 
 ```bash
-# From each tool directory
-cd <tool-directory>
+# 1. Copy and fill in your API keys
+cp .env.example .env
 
-# Create and activate a virtual environment
-python3 -m venv .venv
-source .venv/bin/activate
+# 2. Pick a tool directory
+cd langfuse/               # (or agentops-ai/, braintrust/, etc.)
 
-# Install dependencies
+# 3. Copy .env and set up
+cp ../.env .env
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-# Run Jupyter
+# 4. Run
 jupyter notebook
 ```
 
-For API keys per tool, see each directory’s README.
+## Further reading
 
----
-
-## Feature comparison (summary)
-
-| Capability | Langfuse | AgentOps | Braintrust | Helicone | Phoenix |
-|------------|----------|----------|------------|----------|---------|
-| Tracing | O | O | O | O | O |
-| Multi-agent | Partial | **O** | O | X | O |
-| Prompt management | O | X | O | X | X |
-| LLM-as-a-Judge | O | X | O | X | O |
-| CI/CD deploy gates | X | X | **O** | X | X |
-| Time-travel debugging | X | **O** | X | X | X |
-| Cost tracking | O | O | O | O | Partial |
-| Fully open source | O (MIT) | X | X | Partial | O |
-| Free self-hosting | O | X | X | O | O |
-
-> For the full comparison, see [MARKET_REVIEW.md](./MARKET_REVIEW.md).
+- [Market review](./docs/market-review.md) — vendor comparison, pricing, selection criteria
+- [OpenTelemetry GenAI Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) — the emerging standard all tools converge on
