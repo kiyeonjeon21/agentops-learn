@@ -1,0 +1,5 @@
+langfuse
+anthropic
+opentelemetry-instrumentation-anthropic
+python-dotenv
+jupyter

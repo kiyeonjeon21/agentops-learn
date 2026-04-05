@@ -1,0 +1,6 @@
+arize-phoenix
+anthropic
+opentelemetry-api
+opentelemetry-sdk
+python-dotenv
+jupyter

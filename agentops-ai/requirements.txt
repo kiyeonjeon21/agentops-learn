@@ -1,0 +1,4 @@
+agentops
+anthropic
+python-dotenv
+jupyter
